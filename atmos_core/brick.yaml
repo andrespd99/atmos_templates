@@ -1,7 +1,7 @@
 name: atmos_core
 description: Flutter app template for ATMOS.
 repository: https://github.com/andrespd99/atmos_templates/tree/main/atmos_core
-version: 0.9.0
+version: 0.10.0
 
 environment:
   mason: ">=0.1.0-dev.52 <0.1.0"
