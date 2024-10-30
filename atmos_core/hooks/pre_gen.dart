@@ -35,6 +35,7 @@ void run(HookContext context) {
     /// * [Mustache documentation](https://mustache.github.io/mustache.5.html)
     /// * [Mason conditional documentation](https://docs.brickhub.dev/brick-syntax#-conditionals)
     'project_name': configuration.projectName,
+    'display_name': configuration.displayName,
     'org_name': configuration.organizationName,
     'description': configuration.description,
     'android_namespace': configuration.androidNamespace,

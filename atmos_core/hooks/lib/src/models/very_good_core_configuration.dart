@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:very_good_core_hooks/src/models/utils.dart';
 import 'package:very_good_core_hooks/very_good_core_hooks.dart';
 
 /// The variables specified by this hook.
@@ -16,6 +17,13 @@ enum _VeryGoodCoreConfigurationVariables {
   /// Defaults to `my_app`.
   /// {@endtemplate}
   projectName._('project_name'),
+
+  /// {@template very_good_core_configuration_variables.display_name}
+  /// The application display name when installed on the device.
+  ///
+  /// Defaults to `my_app`.
+  /// {@endtemplate}
+  displayName._('display_name'),
 
   /// {@template very_good_core_configuration_variables.organization_name}
   /// The organization name.
@@ -54,6 +62,7 @@ class VeryGoodCoreConfiguration extends Equatable {
   /// {@macro very_good_core_configuration}
   VeryGoodCoreConfiguration({
     String? projectName,
+    String? displayName,
     String? organizationName,
     String? description,
     WindowsApplicationId? windowsApplicationId,
@@ -62,6 +71,7 @@ class VeryGoodCoreConfiguration extends Equatable {
     AndroidApplicationId? androidApplicationId,
     AndroidNamespace? androidNamespace,
   })  : projectName = projectName ?? 'my_app',
+        displayName = displayName ?? projectName?.toTitleCase() ?? 'My App',
         organizationName = organizationName ?? 'com.example',
         description = description ?? 'A Very Good App' {
     this.windowsApplicationId = windowsApplicationId ??
@@ -105,6 +115,16 @@ class VeryGoodCoreConfiguration extends Equatable {
       );
     }
 
+    final displayName =
+        vars[_VeryGoodCoreConfigurationVariables.displayName.key];
+    if (displayName is! String?) {
+      throw ArgumentError.value(
+        vars,
+        'vars',
+        '''Expected a value for key "${_VeryGoodCoreConfigurationVariables.displayName.key}" to be of type String?, got $displayName.''',
+      );
+    }
+
     final organizationName =
         vars[_VeryGoodCoreConfigurationVariables.organizationName.key];
     if (organizationName is! String?) {
@@ -137,6 +157,7 @@ class VeryGoodCoreConfiguration extends Equatable {
 
     return VeryGoodCoreConfiguration(
       projectName: projectName,
+      displayName: displayName,
       organizationName: organizationName,
       iOsApplicationId: applicationId == null || applicationId.isEmpty
           ? null
@@ -156,6 +177,9 @@ class VeryGoodCoreConfiguration extends Equatable {
 
   /// {@macro very_good_core_configuration_variables.project_name}
   final String projectName;
+
+  /// {@macro very_good_core_configuration_variables.display_name}
+  final String displayName;
 
   /// {@macro very_good_core_configuration_variables.organization_name}
   final String organizationName;
@@ -181,6 +205,7 @@ class VeryGoodCoreConfiguration extends Equatable {
   @override
   List<Object?> get props => [
         projectName,
+        displayName,
         organizationName,
         description,
         windowsApplicationId,

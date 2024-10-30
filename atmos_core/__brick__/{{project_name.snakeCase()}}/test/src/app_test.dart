@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:{{project_name.snakeCase()}}/app/app.dart';
-import 'package:{{project_name.snakeCase()}}/counter/counter.dart';
+import 'package:{{project_name.snakeCase()}}/src/app.dart';
+import 'package:{{project_name.snakeCase()}}/src/presentation/counter/counter.dart';
 
 void main() {
   group('App', () {

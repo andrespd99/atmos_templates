@@ -21,11 +21,10 @@ vars:
     type: string
     description: The application id on Android, Bundle ID on iOS and company name on Windows. If omitted value will be formed by org_name + . + project_name.
     prompt: What is the application id?
-  # TODO Add display name to change the application name when installed on the device.
-  # display_name:
-  #   type: string
-  #   description: The application display name when installed on the device.
-  #   prompt: What is the application display name?
+  display_name:
+    type: string
+    description: The application display name when installed on the device.
+    prompt: What is the application display name?
   description:
     type: string
     description: A short project description
