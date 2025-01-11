@@ -34,5 +34,42 @@ unless existing_build_file
   resources_phase.files << build_file
 end
 
+# Añadir un PBXShellScriptBuildPhase para copiar el archivo plist de Firebase
+shell_script_phase_name = "Copy GoogleService-Info.plist file"
+existing_phase = target.shell_script_build_phases.find { |phase| phase.name == shell_script_phase_name }
+
+unless existing_phase
+  shell_script_phase = target.new_shell_script_build_phase(shell_script_phase_name)
+  shell_script_phase.shell_path = "/bin/sh"
+  shell_script_phase.shell_script = <<~SCRIPT
+    environment="default"
+
+    # Extract the scheme name from the Build Configuration
+    if [[ $CONFIGURATION =~ -([^-]*)$ ]]; then
+      environment=${BASH_REMATCH[1]}
+    fi
+
+    echo $environment
+
+    # Define the resource path
+    GOOGLESERVICE_INFO_PLIST=GoogleService-Info.plist
+    GOOGLESERVICE_INFO_FILE=${PROJECT_DIR}/config/${environment}/${GOOGLESERVICE_INFO_PLIST}
+
+    # Ensure the plist file exists
+    echo "Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_FILE}"
+    if [ ! -f $GOOGLESERVICE_INFO_FILE ]; then
+      echo "No GoogleService-Info.plist found. Please ensure it's in the proper directory."
+      exit 1
+    fi
+
+    # Define the destination path
+    PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app
+    echo "Will copy ${GOOGLESERVICE_INFO_PLIST} to final destination: ${PLIST_DESTINATION}"
+
+    # Copy the file
+    cp "${GOOGLESERVICE_INFO_FILE}" "${PLIST_DESTINATION}"
+  SCRIPT
+end
+
 # Guardar los cambios en el proyecto
 project.save
