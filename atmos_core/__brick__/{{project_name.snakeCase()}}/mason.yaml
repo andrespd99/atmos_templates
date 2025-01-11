@@ -18,7 +18,7 @@ bricks:
     git:
       url: "https://github.com/Avila-Tek/flutter_common_lib"
       path: bricks/avilatek_go_router
-      ref: avilatek_go_router-0.1.1
+      ref: avilatek_go_router-0.1.2
   avilatek_codemagic:
     git:
       url: "https://github.com/Avila-Tek/flutter_common_lib.git"
