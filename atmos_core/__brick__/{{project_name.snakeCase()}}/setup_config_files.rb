@@ -6,8 +6,18 @@ project_path = 'ios/Runner.xcodeproj'
 # Ruta de la carpeta que deseas agregar (relativa al proyecto)
 folder_path = 'config'
 
+# Nombre del archivo que se debe eliminar
+plist_file_name = 'GoogleService-Info.plist'
+
 # Abrir el proyecto
 project = Xcodeproj::Project.open(project_path)
+
+# Eliminar referencias del PBXFileReference
+plist_reference = project.files.find { |file| file.path == "Runner/#{plist_file_name}" }
+if plist_reference
+  puts "🔍 Found PBXFileReference for #{plist_file_name}. Removing..."
+  plist_reference.remove_from_project
+end
 
 # Crear una nueva referencia para la carpeta si no existe
 folder_reference = project.files.find { |file| file.path == folder_path }
