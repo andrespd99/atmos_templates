@@ -6,7 +6,7 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:{{project_name.snakeCase()}}/src/presentation/counter/counter.dart';
 
-import '../../helpers/helpers.dart';
+import '../../../../helpers/helpers.dart';
 
 class MockCounterCubit extends MockCubit<int> implements CounterCubit {}
 
