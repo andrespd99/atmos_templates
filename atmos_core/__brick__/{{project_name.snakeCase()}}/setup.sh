@@ -106,7 +106,7 @@ mason make avilatek_variables_template --on-conflict prompt -o lib/core/
 
 # Step 3: Configure Firebase (optional)
 project_id=""
-show_firebase_config_tip="false"
+has_firebase="false"
 
 echo
 read -p "Do you want to configure Firebase for this app? [y/N]: " configure_firebase
@@ -125,14 +125,17 @@ if [[ "$configure_firebase" == "y" || "$configure_firebase" == "Y" ]]; then
             echo "Configuring Firebase..."
             make all PROJECT_ID="$project_id" BASE_BUNDLE_ID="$bundle_id"
             ruby setup_config_files.rb
-            show_firebase_config_tip="true"
+            has_firebase="true"
             break
         fi
     done
 fi
 
 echo "Installing dependencies"
-flutter pub add firebase_core go_router google_fonts
+flutter pub add go_router google_fonts
+if [[ has_firebase == "true" ]]; then
+    flutter pub add firebase_core
+fi
 flutter pub get
 
 echo "Running 'dart fix --apply'"
@@ -149,7 +152,7 @@ sleep 2
 echo
 echo "💡 Next steps recommended:"
 echo "  - Update theme variables"
-if [[ show_firebase_config_tip == "true" ]]; then
+if [[ has_firebase == "true" ]]; then
     echo "- Setup service accounts for Firebase App Distribution and Google Play Console at https://console.cloud.google.com/iam-admin/serviceaccounts?project=$project_id"
 fi
 echo "  - Create and setup project at https://codemagic.io/apps"
