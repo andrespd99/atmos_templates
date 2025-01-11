@@ -132,7 +132,7 @@ if [[ "$configure_firebase" == "y" || "$configure_firebase" == "Y" ]]; then
 fi
 
 echo "Installing dependencies"
-flutter pub add firebase_core go_router 
+flutter pub add firebase_core go_router google_fonts
 flutter pub get
 
 echo "Running 'dart fix --apply'"
