@@ -1,0 +1,13 @@
+name: setup_firebase_script
+description: Creates scripts to setup Firebase in Flutter.
+repository: https://github.com/andrespd99/atmos_templates/tree/main/setup_firebase_script
+version: 0.1.0
+
+environment:
+  mason: ">=0.1.0-dev.52 <0.1.0"
+
+vars:
+  output_dir:
+    description: "The directory where the scripts will be generated."
+    default: "."
+    type: string
