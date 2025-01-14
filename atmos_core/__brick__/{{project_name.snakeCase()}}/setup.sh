@@ -124,7 +124,6 @@ if [[ "$configure_firebase" == "y" || "$configure_firebase" == "Y" ]]; then
             # Run commands to configure Firebase
             echo "Configuring Firebase..."
             make all PROJECT_ID="$project_id" BASE_BUNDLE_ID="$bundle_id"
-            ruby setup_config_files.rb
             has_firebase="true"
             break
         fi
@@ -143,7 +142,7 @@ output=$(dart fix --apply)
 
 # Step 4: Clean up temporary files
 echo "Cleaning up temporary files..."
-rm -f setup.sh Makefile setup_config_files.rb
+rm -f setup.sh Makefile setup_config_files.rb rename_firebase_options_classes.sh
 
 # Step 5: Final message
 echo "🎉✨ App setup completed successfully. You are ready to start developing!"

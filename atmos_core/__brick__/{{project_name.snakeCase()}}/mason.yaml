@@ -1,26 +1,6 @@
 bricks:
-  feature_brick:
-    git:
-      url: "https://github.com/Avila-Tek/flutter_common_lib.git"
-      path: bricks/feature_brick
-      ref: feature_brick-0.6.2
-  avilatek_readme:
-    git:
-      url: "https://github.com/Avila-Tek/flutter_common_lib.git"
-      path: bricks/avilatek_readme
-      ref: avilatek_readme-0.2.0
-  avilatek_variables_template:
-    git:
-      url: "https://github.com/Avila-Tek/flutter_common_lib"
-      path: bricks/avilatek_variables_template/
-      ref: avilatek_variables_template-0.1.0
-  avilatek_go_router:
-    git:
-      url: "https://github.com/Avila-Tek/flutter_common_lib"
-      path: bricks/avilatek_go_router
-      ref: avilatek_go_router-0.1.2
-  avilatek_codemagic:
-    git:
-      url: "https://github.com/Avila-Tek/flutter_common_lib.git"
-      path: bricks/avilatek_codemagic
-      ref: avilatek_codemagic-0.2.1
+  avila_feature: ^0.1.0
+  avilatek_readme: ^0.1.0
+  avila_themes: ^0.1.0
+  bootstrap_go_routes: ^0.1.0
+  avila_codemagic: ^0.1.0

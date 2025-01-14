@@ -1,10 +1,17 @@
 require 'xcodeproj'
 
-# Ruta al archivo .xcodeproj (actualiza esto con tu ruta)
-project_path = 'ios/Runner.xcodeproj'
+# Verificar si se pasó el argumento WORKING_DIR
+working_dir = "."
+if ARGV.length > 0
+  # Obtener WORKING_DIR desde los argumentos
+  working_dir = ARGV[0]
+end
+
+# Ruta al archivo .xcodeproj (actualiza esto con tu ruta relativa al WORKING_DIR)
+project_path = "#{working_dir}/ios/Runner.xcodeproj"
 
 # Ruta de la carpeta que deseas agregar (relativa al proyecto)
-folder_path = 'config'
+folder_path = "#{working_dir}/config"
 
 # Nombre del archivo que se debe eliminar
 plist_file_name = 'GoogleService-Info.plist'
@@ -83,3 +90,5 @@ end
 
 # Guardar los cambios en el proyecto
 project.save
+
+puts "Xcode project updated successfully in #{working_dir}"
